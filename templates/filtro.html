@@ -1,0 +1,31 @@
+<!-- templates/eventos/lista.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Eventos</title>
+</head>
+<body>
+    <h1>Filtrar Eventos por Fecha</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Eventos</h2>
+    <ul>
+        {% if eventos %}
+            {% for evento in eventos %}
+                <li>{{ evento.direccion }} - {{ evento.piso }}{{evento.departamento}} - {{evento.descripcion}} Total: {{evento.total}}</li>
+            {% empty %}
+                <li>No hay eventos para esta fecha.</li>
+            {% endfor %}
+        {% else %}
+            <li>Por favor, selecciona una fecha para ver los eventos.</li>
+        {% endif %}
+    </ul>
+</body>
+</html>
