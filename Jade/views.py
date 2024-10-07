@@ -24,13 +24,22 @@ def mostrar_producto(request):
     return render(request, 'listado.html', {"productos": productos, "formulario" : formulario})
 
 
+from django.db.models import Sum
 
 def filtro_por_fecha(request):
-    eventos = None  # Inicialmente, no hay eventos
     form = FiltroPorFecha(request.POST or None)
+    eventos = []  # Inicializamos como una lista vacía
+
+    suma_precio = 0  # Inicializamos la suma
 
     if request.method == 'POST' and form.is_valid():
         fecha_seleccionada = form.cleaned_data['fecha']
-        eventos = Ventas.objects.filter(fecha=fecha_seleccionada)
+        eventos = Ventas.objects.filter(fecha=fecha_seleccionada).order_by("-id")
 
-    return render(request, 'filtro.html', {'form': form, 'eventos': eventos})
+        # Usamos aggregate para obtener la suma de 'total'
+        suma_precio = eventos.aggregate(Sum('total'))['total__sum'] or 0  # Manejo de caso donde no hay eventos
+
+    return render(request, 'filtro.html', {'form': form, 'eventos': eventos, 'suma_precio': suma_precio})
+    # else:
+    #     form = filtro_por_fecha()
+    # return render(request, 'filtro.html', {'form': form})

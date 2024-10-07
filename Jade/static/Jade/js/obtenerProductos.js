@@ -49,7 +49,7 @@ boton.addEventListener('click', ()=>{
     // console.log(typeof(textoFinal) )
     descripcion.value = textFinal  
     // totalDefinitivo =  total1 + total2
-    // total.value = totalDefinitivo
+    total.value = valorFinal
     // console.log(totalDefinitivo)
     
 })

@@ -62,3 +62,36 @@ input.cantidad {
     display: flex;
     justify-content: space-between;
 }
+
+nav{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: aquamarine;
+    margin-bottom: 50px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+li{
+    list-style: none;
+    margin-left: 15px;
+}
+
+ul{
+    display: flex;
+}
+
+.ulFiltro{
+    display: flex;
+    flex-direction: column;
+}
+
+.boton-buscar{
+    width: auto;
+    height: auto;
+}
