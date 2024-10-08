@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import FormularioDeVentas, FiltroPorFecha
 from .models import Producto, Ventas
+from django.views.generic import UpdateView
 # Create your views here.
 
 def inicio(request):
@@ -43,3 +44,9 @@ def filtro_por_fecha(request):
     # else:
     #     form = filtro_por_fecha()
     # return render(request, 'filtro.html', {'form': form})
+
+
+class ProductoUpdate(UpdateView):
+    model = Producto
+    success_url = "/productos/"
+    fields = ['nombre', 'precio']
