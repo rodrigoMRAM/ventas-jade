@@ -1,7 +1,9 @@
-from django.shortcuts import render
-from .forms import FormularioDeVentas, FiltroPorFecha
+from django.shortcuts import redirect, render
+from .forms import FormularioDeVentas, FiltroPorFecha , FormularioProductos
 from .models import Producto, Ventas
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
+from django.db.models import Sum
+from django.urls import reverse_lazy
 # Create your views here.
 
 def inicio(request):
@@ -19,13 +21,13 @@ def mostrar_producto(request):
         print(formulario)
         if formulario.is_valid:
             formulario.save()
-            return render(request, 'listado.html', {"productos": productos, "formulario" : formulario})
+            return redirect("ultimo_producto")
+            # return render(request, 'listado.html', {"productos": productos, "formulario" : formulario})
     else:
         formulario = FormularioDeVentas()
     return render(request, 'listado.html', {"productos": productos, "formulario" : formulario})
 
 
-from django.db.models import Sum
 
 def filtro_por_fecha(request):
     form = FiltroPorFecha(request.POST or None)
@@ -50,3 +52,25 @@ class ProductoUpdate(UpdateView):
     model = Producto
     success_url = "/productos/"
     fields = ['nombre', 'precio']
+
+
+def agregar_producto(request):
+    productos = Producto.objects.all()
+    if request.method == "POST":
+        formulario = FormularioProductos(request.POST)
+        print(formulario)
+        if formulario.is_valid:
+            formulario.save()
+            return redirect("productos")
+            # return render(request, 'listado.html', {"productos": productos, "formulario" : formulario})
+    else:
+        formulario = FormularioProductos()
+    return render(request, 'addProduct.html', {"productos": productos, "formulario" : formulario})
+
+class EliminarProducto(DeleteView):
+    model = Producto 
+    success_url = reverse_lazy('editar')
+
+def ultimo_producto(request):
+    producto = Ventas.objects.latest('id')
+    return render(request, "ultimoProducto.html" ,{"producto" : producto})

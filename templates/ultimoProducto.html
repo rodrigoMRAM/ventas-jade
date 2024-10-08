@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block Content %}
+    <div class="pedido">
+        <h3>Pedido:</h3>
+        <p>{{producto.direccion}} - {{producto.piso}}{{producto.departamento}}</p>
+        <p>{{producto.descripcion}}</p>
+        <p>Total: {{producto.total}}</p>
+        <a class="btn btn-primary" href={% url "productos" %}>Volver</a>
+    </div>
+
+{% endblock Content %}
+

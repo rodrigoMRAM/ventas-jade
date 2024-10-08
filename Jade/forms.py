@@ -13,6 +13,11 @@ class FormularioDeVentas(forms.ModelForm):
         #         'disabled': 'true'
         #     }) }
 
+class FormularioProductos(forms.ModelForm):
+    class Meta:
+        model= Producto
+        fields = ["nombre" , "precio"]
+
 
 class FiltroPorFecha(forms.Form):
     fecha = forms.DateField(

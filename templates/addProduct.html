@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% block Content %}
+<div class="contenedor">
+    {% for products in productos  %}
+                <div class="productos">
+                    <div class="d-flex">
+                        
+                        <p class="{{products.nombre}}" valor="{{products.precio}}">
+                            {{products.nombre}}
+                        </p>
+                        <p class="{{products.precio}}">
+                            {{products.precio}}
+                        </p>
+                        <a href={% url "editar" products.id %}><span class="material-symbols-outlined">
+                            edit
+                            </span></a>
+                            <a  class="btn btn-danger" href={% url "eliminar" products.id %}>Eliminar</a>
+                    </div>
+
+                </div>
+                {% endfor %}
+    <form id="formulario" class="loginform" method="POST" enctype=multipart/form-data>
+        <h1 class="datosClientH1">Agregar nuevo producto</h1>
+        {% csrf_token%}
+        {{formulario.as_p}}
+        <ul class="lista">
+            
+        </ul>
+        <input class="btn btn-primary" type="submit" value="Agregar">
+    </form>
+</div>
+    {% endblock Content %}
