@@ -69,7 +69,7 @@ def agregar_producto(request):
 
 class EliminarProducto(DeleteView):
     model = Producto 
-    success_url = reverse_lazy('editar')
+    success_url = reverse_lazy('agregar')
 
 def ultimo_producto(request):
     producto = Ventas.objects.latest('id')

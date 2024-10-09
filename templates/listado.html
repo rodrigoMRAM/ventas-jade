@@ -23,21 +23,24 @@
                             edit
                             </span></a>
                     </div>
-                    <div>
+                    <div class="productosBotones quantity">
                         
                         <button class="decrementar">-</button>
-                        <input type="number" name="cantidad"class="cantidad" valor="{{products.precio}}" id="{{products.nombre}}" styles="width: 20px;" value="{{products.cantidad}}">
+                        <input type="number" name="cantidad"class="input-box" valor="{{products.precio}}" id="{{products.nombre}}" styles="width: 20px;" value="{{products.cantidad}}">
                         <button class="incrementar">+</button>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-            <button id="boton" class="btn btn-primary">Agregar Pedido</button>
-            <a href="{% url "productos" %}"class="btn btn-danger">Limpiar</a>
+            <div class="mt-4">
+
+                <button id="boton" class="btn btn-primary mt-">Agregar Pedido</button>
+                <a href="{% url "productos" %}"class="btn btn-danger">Limpiar</a>
+            </div>
             
+            <h1 class="datosClientH1">Ingresar datos de cliente</h1>
             
             <form id="formulario" class="loginform" method="POST" enctype=multipart/form-data>
-                <h1 class="datosClientH1">Ingresar datos de cliente</h1>
                 {% csrf_token%}
                 {{formulario.as_p}}
                 <ul class="lista">

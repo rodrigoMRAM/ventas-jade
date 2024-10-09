@@ -8,14 +8,16 @@
     <div class="contenedor">
       
       <h1>Filtrar ventas por Fecha</h1>
+      <div class="filtroVentas">
+
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button class="boton-buscar btn btn-primary" type="submit">Buscar</button>
+        </form>
+      </div>
       
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="boton-buscar btn btn-primary" type="submit">Buscar</button>
-      </form>
-      
-      <h2>Eventos</h2>
+      <h2>Ventas</h2>
     <ul class="ulFiltro">
         <table class="table">
         <thead>

@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+{% block Content %}
+<table>
+    <form method="post">{% csrf_token %}
+      {% comment %} <img class="tacho"src="{%static 'APP/img/eliminar.png'%}" alt="" srcset="" width="40px"></a> {% endcomment %}
+      <div class="textoEliminar">
+      <strong>¿Estas seguro que desea eliminar el articulo "{{ object.nombre }}"?</strong>
+      <p class="info">Su contenido sera eliminado permanentemente</p>
+    </div>
+     
+      <div class="eliminacionBotones">
+      <input class="btn btn-danger botonMargin" type="submit" value="Eliminar" />
+
+      <a  class="btn btn-primary ml-2" href="{% url 'agregar' %}">No</a>
+    </div>
+
+    </form>
+
+    <p>
+      
+    </p>
+
+  </table>
+{% endblock Content %}
+

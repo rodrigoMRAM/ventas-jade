@@ -8,12 +8,33 @@
     display: flex;
     
 }
+
+.productosBotones{
+    display: flex;
+    height: 30px;
+}
 .productos p{
     margin-left: 10px;
     margin-right: 10px;
 }
 
-
+.addProduct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+.filtroVentas{
+    margin: 0 auto;
+}
+.editDelete{
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: space-between;
+    width: 100%;
+}
 
 .cantidad-producto {
     display: flex;
@@ -81,6 +102,11 @@ li{
     list-style: none;
     margin-left: 15px;
 }
+/* .decrementar , .incrementar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
 
 ul{
     display: flex;
@@ -103,7 +129,60 @@ ul{
 
 .pedido{
     display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    align-items: flex-start;
 }
+
+
+.quantity {
+    display: flex;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .quantity button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    width: 30px;
+    height: auto;
+    text-align: center;
+    transition: background-color 0.2s;
+  }
+  .loginform{
+    width: 150px;
+  }
+  .margenDerecho{
+    margin-right: 10px;
+  }
+  
+  .quantity button:hover {
+    background-color: #2980b9;
+  }
+  
+  .input-box {
+    width: 40px;
+    text-align: center;
+    border: none;
+    padding: 8px 10px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  /* Hide the number input spin buttons */
+  .input-box::-webkit-inner-spin-button,
+  .input-box::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .input-box[type="number"] {
+    -moz-appearance: textfield;
+  }
+  
