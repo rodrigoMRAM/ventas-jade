@@ -92,6 +92,9 @@ nav{
     background-color: aquamarine;
     margin-bottom: 50px;
 }
+.jadeImg{
+    margin-left: 10px;
+}
 
 a{
     text-decoration: none;

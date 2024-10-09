@@ -25,16 +25,16 @@
                     </div>
                     <div class="productosBotones quantity">
                         
-                        <button class="decrementar">-</button>
+                        <button  id="" class="decrementar">-</button>
                         <input type="number" name="cantidad"class="input-box" valor="{{products.precio}}" id="{{products.nombre}}" styles="width: 20px;" value="{{products.cantidad}}">
-                        <button class="incrementar">+</button>
+                        <button id="incrementar" class="incrementar">+</button>
                     </div>
                 </div>
                 {% endfor %}
             </div>
             <div class="mt-4">
 
-                <button id="boton" class="btn btn-primary mt-">Agregar Pedido</button>
+                {% comment %} <button id="boton" class="btn btn-primary mt-">Agregar Pedido</button> {% endcomment %}
                 <a href="{% url "productos" %}"class="btn btn-danger">Limpiar</a>
             </div>
             

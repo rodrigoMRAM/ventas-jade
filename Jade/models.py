@@ -8,8 +8,10 @@ DIRECIONES = (
     ('Las palmas 2850', 'Las palmas 2850'),
     ('Las palmas 2856', 'Las palmas 2856'),
     ('Las palmas 2876', 'Las palmas 2876'),
+    ('Fournier 2901', 'Fournier 2901'),
     ('Corrales 1123', 'Corrales 1123'),
     ('Ramirez 970','Ramirez 970'),
+    ('Otros','Otros'),
 )
 
 class Producto(models.Model):
