@@ -3,15 +3,15 @@ const agregar_venta = document.getElementById("agregar_venta")
 const personalizada = document.getElementById("id_direccion_personalizada")
 const label = document.querySelector('label[for="id_direccion_personalizada"]')
 console.log(miSelect.value)
+label.classList.add('oculto')
 miSelect.addEventListener('change', (e)=>{
     if(e.target.value == "Otros"){
-        personalizada.style.display = "block"
-        label.style.display = "block"
+        personalizada.classList.toggle('oculto')
+        label.classList.toggle('oculto')
+      
     }else{
-        const direccion = document.getElementById("direccion")
-        const label_direccion = document.getElementById("label_direccion")
-        direccion.remove()
-        label_direccion.remove()
+        personalizada.classList.add('oculto')
+        label.classList.add('oculto')
     }
 })
 

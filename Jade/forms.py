@@ -8,7 +8,9 @@ class FormularioDeVentas(forms.ModelForm):
     class Meta:
         model = Ventas
         fields = '__all__'
-
+        widgets = {
+            'direccion_personalizada': forms.TextInput(attrs={'class': 'oculto'}),
+        }
         def clean(self):
             cleaned_data = super().clean()
             direccion = cleaned_data.get("direccion")

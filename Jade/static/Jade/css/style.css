@@ -95,14 +95,16 @@ nav{
 .jadeImg{
     margin-left: 10px;
 }
-
-
+.oculto{
+    display: none;
+}
+/* 
 #id_direccion_personalizada{
     display: none;
-}
-label[for="id_direccion_personalizada"]{
+} */
+/* label[for="id_direccion_personalizada"]{
     display: none;
-}
+} */
 a{
     text-decoration: none;
     color: black;
