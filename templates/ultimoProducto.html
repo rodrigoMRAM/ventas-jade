@@ -4,7 +4,7 @@
 
     <div class="pedido">
         <h3>Pedido:</h3>
-        <p>{{producto.direccion}} - {{producto.piso}}{{producto.departamento}}</p>
+        <p>{{producto.direccion}} - {% if producto.direccion_personalizada %} {{producto.direccion_personalizada}}{% endif %}  {{producto.piso}}{{producto.departamento}}</p>
         <p>{{producto.descripcion}}</p>
         <p><strong>Total: </strong>{{producto.total}}</p>
         <a class="btn btn-primary" href={% url "productos" %}>Volver</a>

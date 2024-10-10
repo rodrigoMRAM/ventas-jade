@@ -25,6 +25,11 @@ class Producto(models.Model):
 
 class Ventas(models.Model):
     direccion = models.CharField(max_length=100, choices=DIRECIONES, default='Perro')
+    direccion_personalizada = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True  # Permitir que sea nulo si no se usa
+    )
     piso = models.SmallIntegerField()
     departamento = models.CharField(max_length=1)
     descripcion = models.TextField(max_length=100)
@@ -34,6 +39,11 @@ class Ventas(models.Model):
         # Convertir el valor del campo nombre a mayúsculas antes de guardar
         self.departamento = self.departamento.upper()
         super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if self.direccion == 'otra' and not self.valor_personalizado:
+            raise ValueError("Debes proporcionar un valor personalizado.")
+        super().save(*args, **kwargs)
+    
     
     def __str__(self):
         return f"{self.direccion}- Piso:{self.piso}- Departamento: {self.departamento}"
