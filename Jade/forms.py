@@ -3,7 +3,6 @@ from django import forms
 from .models import *
 from django.forms import ModelForm
 from datetime import date
-
 class FormularioDeVentas(forms.ModelForm):
     class Meta:
         model = Ventas
@@ -31,6 +30,9 @@ class FormularioProductos(forms.ModelForm):
 
 class FiltroPorFecha(forms.Form):
     fecha = forms.DateField(
-        widget=forms.SelectDateWidget(),
-        initial=date.today()  # Establece la fecha actual como valor inicial
+        widget=forms.TextInput(attrs={
+            'class': 'form-control', 
+            'id': 'datepicker',
+        }),
+        initial=date.today()
     )

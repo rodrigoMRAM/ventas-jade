@@ -32,20 +32,40 @@ def mostrar_producto(request):
 def filtro_por_fecha(request):
     form = FiltroPorFecha(request.POST or None)
     eventos = []  # Inicializamos como una lista vacía
-
+    suma_precio_formateado = 0
     suma_precio = 0  # Inicializamos la suma
-
+    precio_formateado = 0
     if request.method == 'POST' and form.is_valid():
         fecha_seleccionada = form.cleaned_data['fecha']
         eventos = Ventas.objects.filter(fecha=fecha_seleccionada).order_by("-id")
+        eventos_formateados = []
 
+        for evento in eventos:
+            precio = evento.total  # Asumiendo que hay un campo 'precio' en el modelo
+            if precio > 1000:
+                precio_formateado = f"{precio:,}".replace(',', '.')
+            else:
+                precio_formateado = precio
+                
         # Usamos aggregate para obtener la suma de 'total'
         suma_precio = eventos.aggregate(Sum('total'))['total__sum'] or 0  # Manejo de caso donde no hay eventos
+        if suma_precio > 1000:
+            suma_precio_formateado = f"{suma_precio:,}".replace(',', '.')
+        else:
+            suma_precio_formateado = suma_precio
 
-    return render(request, 'filtro.html', {'form': form, 'eventos': eventos, 'suma_precio': suma_precio})
-    # else:
-    #     form = filtro_por_fecha()
-    # return render(request, 'filtro.html', {'form': form})
+        eventos_formateados.append({
+        'eventos': eventos,
+        'precio_formateado': precio_formateado
+        })
+        context = {
+            'eventos': eventos_formateados,
+            'form': form, 
+            'suma_precio_formateado': suma_precio_formateado,
+         }
+        
+
+    return render(request, 'filtro.html', {'form':form,'eventos': eventos ,'suma_precio_formateado': suma_precio_formateado})
 
 
 class ProductoUpdate(UpdateView):

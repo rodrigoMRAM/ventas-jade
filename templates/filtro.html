@@ -2,7 +2,8 @@
 
   {% block Title %}
   <title>Filtro de ventas</title>
-  
+  {% load humanize %}
+
   {% endblock Title %}
   {% block Content %}
     <div class="contenedor">
@@ -37,18 +38,29 @@
             <td>{{evento.direccion}}</td>
             <td>{{evento.piso}}{{evento.departamento}}</td>
             <td>{{evento.descripcion}}</td>
-            <td>{{evento.total}}</td>
+            <td>${{evento.total|intcomma}}</td>
               </tr>
               {% empty %}
               <li>No hay eventos para esta fecha.</li>
               {% endfor %}
               {% endif %}
-            </tbody>
+            </tbody>  
           </table>
-    </ul>
-    {% if suma_precio %}
-    <p>El total es {{suma_precio}}</p>
-    {% endif %}
+        </ul>
+        {% if suma_precio_formateado %}
+        <p>El total es ${{suma_precio_formateado}}</p>
+        {% else %}
+        <p>No hay nada para mostrar</p>
+      
+        {% endif %}
 </div>
 
     {% endblock Content %}
+    {% comment %} <script>
+      $(document).ready(function(){
+          $('#datepicker').datepicker({
+              format: 'mm-dd-yyyy',  // Cambia el formato si es necesario
+              autoclose: true
+          });
+      });
+  </script> {% endcomment %}
